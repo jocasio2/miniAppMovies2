@@ -18,18 +18,6 @@ app.get('/movies', function(req, res) {
         })
       );
   });
-  app.get('/movies/:title', function(req, res) {
-    knex
-      .select('*')
-      .from('movies')
-      .then(data => res.status(200).json(data))
-      .catch(err =>
-        res.status(404).json({
-          message:
-            'The data you are looking for could not be found. Please try again'
-        })
-      );
-  });
 
   app.get('/authors', function(req, res) {
     knex
@@ -48,7 +36,7 @@ app.get('/movies', function(req, res) {
     let movie = req.body;
   
     knex.insert(movie)
-      .into("movies")
+      .into('movies')
       .then(data => res.status(200).send("Insert into Movies was successful!"))
       .catch(err => res.status(404).json(err))
   })
